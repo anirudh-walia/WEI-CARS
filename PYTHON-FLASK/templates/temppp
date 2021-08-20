@@ -1,0 +1,230 @@
+<script>
+                        var contract ;
+                        var address = "0x01AeBD51A1Aef242Df61D42c6f804BB8789fB328";
+                        var abi = [
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "Contractts",
+		"outputs": [
+			{
+				"name": "carname",
+				"type": "string"
+			},
+			{
+				"name": "basecharges",
+				"type": "uint256"
+			},
+			{
+				"name": "perkmcharges",
+				"type": "uint256"
+			},
+			{
+				"name": "maxspeed",
+				"type": "uint256"
+			},
+			{
+				"name": "penpspeed",
+				"type": "uint256"
+			},
+			{
+				"name": "pickupp",
+				"type": "string"
+			},
+			{
+				"name": "special",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getContract",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"name": "_carname",
+				"type": "string"
+			},
+			{
+				"name": "_basecharges",
+				"type": "uint256"
+			},
+			{
+				"name": "_perkmcharges",
+				"type": "uint256"
+			},
+			{
+				"name": "_maxspeed",
+				"type": "uint256"
+			},
+			{
+				"name": "_penpspeed",
+				"type": "uint256"
+			},
+			{
+				"name": "_pickupp",
+				"type": "string"
+			},
+			{
+				"name": "_special",
+				"type": "string"
+			}
+		],
+		"name": "saveContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "Contracttsaccts",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getContractt",
+		"outputs": [
+			{
+				"name": "_carname",
+				"type": "string"
+			},
+			{
+				"name": "_basecharges",
+				"type": "uint256"
+			},
+			{
+				"name": "_perkmcharges",
+				"type": "uint256"
+			},
+			{
+				"name": "_maxspeed",
+				"type": "uint256"
+			},
+			{
+				"name": "_penpspeed",
+				"type": "uint256"
+			},
+			{
+				"name": "_pickupp",
+				"type": "string"
+			},
+			{
+				"name": "_special",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+;
+		$(document).ready(function()
+		{
+			web3=new Web3(web3.currentProvider);
+			window.web3.currentProvider.enable();
+			contract =  new web3.eth.Contract (abi, address );
+
+
+		})
+		$('#submit').click(function()
+		{
+			var _carname;
+			_carnme = parseInt($('#carname').val());
+			var _basecharges=0;
+			_basecharges = parseInt($('#base_charge').val();
+			var _perkmcharges=0;
+			_perkmcharges = parseInt($('#charge_km').val();
+			var _maxspeed=0;
+			_maxspeed = parseInt($('#max_speed').val();
+			var _penpspeed=0;
+			_penpspeed = parseInt($('#pen_speed').val();
+			var _pickupp;
+			_pickupp = parseInt($('#pickup_place').val();
+			var _special;
+			_special = parseInt($('#special').val();
+
+			web3.eth.getAccounts().then(function(accounts){
+				var acc = accounts[0];
+				return contract.methods.saveContract(_carname, _basecharges, _perkmcharges, _maxspeed, _penpspeed, _pickupp, _special).send({from:acc});
+			}).then(function(tx)
+			{
+				console.log(tx);
+				$('#blockno').html('Block Number : ' + tx.blockNumber);
+				//$('#blockhash').html('Block Tx Hash : ' + tx.blockHash);
+				$('#blockhash').html('Block Tx Hash : ' + tx.transactionHash);
+				$('#Datawrittenby').html('Data Written by : ' + tx.from);
+
+			}).catch(function(tx)
+			{
+				console.log(tx);
+			})
+
+		})
+
+<!--		$('#withdraw').click(function()-->
+<!--		{-->
+<!--			var amt =0;-->
+<!--			amt = parseInt($('#amount').val());-->
+<!--			web3.eth.getAccounts().then(function(accounts){-->
+<!--				var acc = accounts[0];-->
+<!--				return contract.methods.withdraw(amt).send({from:acc});-->
+<!--			}).then(function(tx)-->
+<!--			{-->
+<!--				console.log(tx);-->
+<!--				$('#blockno').html('Block Number : ' + tx.blockNumber);-->
+<!--				$('#blockhash').html('Block Tx Hash : ' + tx.blockHash);-->
+<!--				$('#Datawrittenby').html('Data Written by : ' + tx.from);-->
+
+<!--			}).catch(function(tx)-->
+<!--			{-->
+<!--				console.log(tx);-->
+<!--			})-->
+
+<!--		})-->

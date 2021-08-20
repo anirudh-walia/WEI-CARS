@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>WEI CARS | CREATE CONTRACT</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('static/images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+
+				<h1 style="color:red;  text-align: center; font-size:30px;">{{msg}}</h1>
+				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="/savecontract">
+					<span class="login100-form-title p-b-53">
+						Create Your Smart Contract
+					</span>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							METAMASK ADDRESS
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" id="addressmeta" name="address" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							CONFIRM CAR NAME
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" id="carname" name="carname" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							CONFIRM CAR NUMBER
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" id="carno" name="carno" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							BASE CHARGES
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="text" id="basecharge" name="basecharge" >
+						<span class="focus-input100"></span>
+					</div>
+
+                    <div class="p-t-13 p-b-9">
+						<span class="txt1">
+							CHARGE / KM
+						</span>
+
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="text" id="chargeperkm" name="chargeperkm" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							MAX SPEED
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" id="maxspeed" name="maxspeed" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							WEI / SPEED VIOLATION
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" id="penperms" name="penperms" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							PICKUP PLACE
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" id="pickup" name="pickup" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							SPECIAL INSTRUCTIONS
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<textarea name="special" rows="6" maxlength="500" class="input100" id="special" placeholder="any instructions. . . . . . . . . ." ></textarea>
+						<span class="focus-input100"></span>
+					</div>
+
+                    <div class="p-t-13 p-b-9">
+						<span class="txt2 bo1 m-l-5">
+							*CLICK ON THE SAVE IT ON ETHEREUM BUTTON FIRST
+                            THEN CLICK ON THE SAVE MY CONTRACT BUTTON
+						</span>
+
+					</div>
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn">
+							SAVE MY CONTRACT
+						</button>
+					</div>
+				</form>
+                <br>
+                <button class="login100-form-btn" id = 'save'>SAVE IT ON ETHEREUM</button>
+            		<script>
+        var contract ;
+        var address = "0xbf3aBe8E8aa2d201aD38fCe72064c820842cfD6e"   ;
+        var abi = [
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "getContract",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_addresss",
+				"type": "address"
+			},
+			{
+				"name": "_haash",
+				"type": "string"
+			},
+			{
+				"name": "_dateandtime",
+				"type": "string"
+			},
+			{
+				"name": "_hours",
+				"type": "int256"
+			}
+		],
+		"name": "taketrx",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "givetrx",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"name": "_carname",
+				"type": "string"
+			},
+			{
+				"name": "_carno",
+				"type": "string"
+			},
+			{
+				"name": "_basecharge",
+				"type": "int256"
+			},
+			{
+				"name": "_chargeperkm",
+				"type": "int256"
+			},
+			{
+				"name": "_maxspeed",
+				"type": "int256"
+			},
+			{
+				"name": "_penperms",
+				"type": "int256"
+			},
+			{
+				"name": "_pickup",
+				"type": "string"
+			},
+			{
+				"name": "_special",
+				"type": "string"
+			}
+		],
+		"name": "saveContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "trxaccs",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "caraccs",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+		$(document).ready(function()
+		{
+			web3=new Web3(web3.currentProvider);
+			window.web3.currentProvider.enable();
+			contract =  new web3.eth.Contract (abi, address );
+		})
+		$('#save').click(function()
+		{
+			_address = $('#addressmeta').val();
+			_carname = $('#carname').val();
+			_carno = $('#carno').val();
+			var _basecharge =0;
+			_basecharge = parseInt($('#basecharge').val());
+			var _chargeperkm =0;
+			_chargeperkm = parseInt($('#chargeperkm').val());
+			var _maxspeed =0;
+			_maxspeed = parseInt($('#maxspeed').val());
+			var _penperms =0;
+			_penperms = parseInt($('#penperms').val());
+			 _pickup = $('#pickup').val();
+			 _special = $('#special').val();
+			web3.eth.getAccounts().then(function(accounts){
+				var acc = accounts[0];
+				return contract.methods.saveContract(_address, _carname, _carno, _basecharge, _chargeperkm,
+				_maxspeed, _penperms, _pickup, _special).send({from:acc});
+			}).then(function(tx)
+			{
+				console.log(tx);
+				$('#blockno').html('Block Number : ' + tx.blockNumber);
+				//$('#blockhash').html('Block Tx Hash : ' + tx.blockHash);
+				$('#blockhash').html('Block Tx Hash : ' + tx.transactionHash);
+				$('#Datawrittenby').html('Data Written by : ' + tx.from);
+
+			}).catch(function(tx)
+			{
+				console.log(tx);
+			})
+
+		})
+
+<!--		$('#withdraw').click(function()-->
+<!--		{-->
+<!--			var amt =0;-->
+<!--			amt = parseInt($('#amount').val());-->
+<!--			_name = $('#name').val();-->
+<!--			web3.eth.getAccounts().then(function(accounts){-->
+<!--				var acc = accounts[0];-->
+<!--				return contract.methods.withdraw(amt, _name).send({from:acc});-->
+<!--			}).then(function(tx)-->
+<!--			{-->
+<!--				console.log(tx);-->
+<!--				$('#blockno').html('Block Number : ' + tx.blockNumber);-->
+<!--				$('#blockhash').html('Block Tx Hash : ' + tx.blockHash);-->
+<!--				$('#Datawrittenby').html('Data Written by : ' + tx.from);-->
+
+<!--			}).catch(function(tx)-->
+<!--			{-->
+<!--				console.log(tx);-->
+<!--			})-->
+
+<!--		})-->
+</script>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>WEI CARS | FINAL PAYMENT PAGE</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
+		<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+	<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.enableEthereumButton btn {background-color: #4CAF50;} /* Green */
+.sendEthButton btn {background-color: #008CBA;} /* Blue */
+</style>
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('static/images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+
+				<h1 style="color:green;  text-align: center; font-size:30px;">{{msg}}</h1>
+				<form class="login100-form validate-form flex-sb flex-w" >
+					<span class="login100-form-title p-b-53">
+						FINAL PAYMENT DETAILS
+					</span>
+
+					<div class="p-t-31 p-b-9">
+						<span class="txt1">
+							TOTAL KM CHARGED - {{totalprice}}
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<span class="focus-input100"></span>
+					</div>
+
+
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							TOTAL PENALTIES CHARGED - {{penalty}}
+						</span>
+
+						<a href="#" class="txt2 bo1 m-l-5">
+							WHY?
+						</a>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							TOTAL COST - {{totalpriceafterpen}}
+						</span>
+
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							TOTAL ETHER TO BE PAYED- {{finaltotal}}
+						</span>
+
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="focus-input100"></span>
+					</div>
+
+
+
+				</form>
+				<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							ENABLE YOUR METAMASK ACCOUNT -
+						</span>
+
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<button class="enableEthereumButton btn">Enable Ethereum</button>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="p-t-13 p-b-9">
+						<span class="txt1">
+							ENTER THE AMOUNT IN METAMASK AND SEND -
+						</span>
+
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<button class="sendEthButton btn">Send Eth</button>
+						<span class="focus-input100"></span>
+					</div>
+
+<!--				<button class="enableEthereumButton btn">Enable Ethereum</button>-->
+<!--				<button class="sendEthButton btn">Send Eth</button>-->
+				<script>
+					const ethereumButton = document.querySelector('.enableEthereumButton');
+					const sendEthButton = document.querySelector('.sendEthButton');
+					var amount = 0;
+					amount = parseInt($('#amount').val());
+					let accounts = [];
+
+					//Sending Ethereum to an address
+					sendEthButton.addEventListener('click', () => {
+					  ethereum
+						.request({
+						  method: 'eth_sendTransaction',
+						  params: [
+							{
+							  from: accounts[0],
+							  to: '0xf0dff37bC4eA77c5Ce2099109813C2F89aDb90E7',
+							  value: amount,
+							  gasPrice: '0x09184e72a000',
+							  gas: '0x2710',
+							},
+						  ],
+						})
+						.then((txHash) => console.log(txHash))
+						.catch((error) => console.error);
+					});
+
+					ethereumButton.addEventListener('click', () => {
+					  getAccount();
+					});
+
+					async function getAccount() {
+					  accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+					}
+				</script>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/daterangepicker/moment.min.js"></script>
+	<script src="static/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="static/js/main.js"></script>
+
+
+</body>
+</html>
